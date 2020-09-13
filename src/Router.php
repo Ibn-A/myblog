@@ -28,6 +28,7 @@ Class Router {
     public function run(){
         $match = $this->router->match();
         $view = $match['target'];
+        $router = $this->router;
         ob_start();
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
         $content = ob_get_clean();
