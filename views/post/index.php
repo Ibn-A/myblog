@@ -12,22 +12,10 @@ $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
 ?>
 <h1> Mon Blog</h1>
 
-
-
 <div class="row">
     <?php foreach($posts as $post): ?>
     <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title"><?= htmlentities($post->getTitle()) ?></h5>
-                <p class="text-muted"><?= $post->getCreatedAt()->format('d F Y')?></p>
-                <p><?= $post->getExcerpt() ?></p>
-                <p>
-                    <a href="<?= $router->generate('post', ['id' => $post->getID(), 'slug' => $post->getSlug()])?>" class="btn btn-primary">voir plus</a>
-                </p>
-
-            </div>
-        </div>
+        <?php require 'card.php' ?>
     </div>
     <?php endforeach ?>
 
