@@ -18,7 +18,7 @@ class Post {
     private $categories;
 
     public function getID(): ?int {
-        return $this->$id_post;
+        return $this->id_post;
     }
     public function getTitle(): ?string {
         return $this->title;
