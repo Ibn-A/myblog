@@ -30,14 +30,14 @@ Class Router {
 
     }
 
-    public function run(){
+    public function run() : self{
         $match = $this->router->match();
         $view = $match['target'];
         $router = $this;
         ob_start();
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
         $content = ob_get_clean();
-        require $this->viewPath . DIRECTORY_SEPARATOR . 'layout/default.php';
+        require $this->viewPath . DIRECTORY_SEPARATOR . 'layouts/default.php';
 
         return $this;
     }
