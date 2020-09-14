@@ -6,6 +6,11 @@ $title = "Mon Blog";
 $pdo = new PDO('mysql:host=127.0.0.1;dbname=blog', 'root', 'root', [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 ]);
+//Emplêcher les numéro de pages non entier
+$page = $_GET['page'] ?? 1;
+if(!filter_var($page, FILTER_VALIDATE_INT)) {
+    throw new Exception('Numéro de page invalide');
+}
 // numéro de la page courante
 $currentPage = (int)($_GET['page'] ?? 1);
 if ($currentPage <= 0) {
