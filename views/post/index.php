@@ -1,11 +1,10 @@
 <?php 
 use App\Helpers\Text;
 use App\Model\Post;
+use App\Connection;
 
 $title = "Mon Blog"; 
-$pdo = new PDO('mysql:host=127.0.0.1;dbname=blog', 'root', 'root', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+$pdo = Connection::getPDO();
 //Emplêcher les numéro de pages non entier
 $page = $_GET['page'] ?? 1;
 if(!filter_var($page, FILTER_VALIDATE_INT)) {
@@ -40,7 +39,7 @@ $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
 
 <div class="row">
     <?php foreach($posts as $post): ?>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <?php require 'card.php' ?>
     </div>
     <?php endforeach ?>
