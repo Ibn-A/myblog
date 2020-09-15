@@ -2,25 +2,14 @@
 use App\Helpers\Text;
 use App\Model\Post;
 use App\Connection;
+use App\Url;
 
 $title = "Mon Blog"; 
 $pdo = Connection::getPDO();
-//Emplêcher les numéro de pages non entier
-$page = $_GET['page'] ?? 1;
-if(!filter_var($page, FILTER_VALIDATE_INT)) {
-    throw new Exception('Numéro de page invalide');
-}
-//
-if ($page === '1') {
-    header('Location:' .$router->url('home'));
-    http_response_code(301);
-    exit();
-}
-// numéro de la page courante
-$currentPage = (int)$page;
-if ($currentPage <= 0) {
-    throw new Exception('Numéro de page invalide');
-}
+
+$currentPage = URL::getPositiveInt('page', 1);
+
+
 //récupère le nombre total d'articles
 $count = (int)$pdo->query('SELECT COUNT(id_post) FROM post')->fetch(PDO::FETCH_NUM)[0];
 $perPage = 12;
