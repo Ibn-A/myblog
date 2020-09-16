@@ -27,8 +27,8 @@ class Post {
         return $this->slug_post;
     }
 
-    public function getContent() {
-        return $this->content;
+    public function getContent(): ?string {
+        return nl2br(htmlentities($this->content));
     }
     public function getCreatedAt(): Datetime {
         return new DateTime($this->created_at);
