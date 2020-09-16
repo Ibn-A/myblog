@@ -33,6 +33,8 @@ Class Router {
     public function run() : self{
         $match = $this->router->match();
         $view = $match['target'];
+        //recuperer les infos concernant la page afficher : slug et id
+        $params = $match['params'];
         $router = $this;
         ob_start();
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';

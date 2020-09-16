@@ -9,6 +9,7 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
+
 // redirection de page
 if (isset($_GET['page']) && $_GET['page'] === '1') {
     //réécrire l'url sans le paramètre ?page
@@ -28,7 +29,7 @@ if (isset($_GET['page']) && $_GET['page'] === '1') {
 /* Refactoring du routage */
 $router = new App\Router(dirname(__DIR__) . '/views');
 $router->get('/', 'post/index', 'home');
+$router->get('/blog/category/[*:slug]-[i:id]', 'category/show','category');
 $router->get('/blog/[*:slug]-[i:id]', 'post/show', 'post');
-$router->get('/blog/category', 'category/show','category');
 $router->run();
 
