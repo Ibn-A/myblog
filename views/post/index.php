@@ -2,7 +2,7 @@
 use App\Helpers\Text;
 use App\Model\Post;
 use App\Connection;
-use App\Url;
+use App\URL;
 
 $title = "Mon Blog"; 
 $pdo = Connection::getPDO();
