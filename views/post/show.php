@@ -21,6 +21,7 @@ if ($post->getSlug() !== $slug) {
     http_response_code(301);
     header('Location:' . $url);
 }
+// recuperer les catégories associé a un article.
 $query = $pdo->prepare('
 SELECT c.id_category, c.slug_category, c.name_category
 FROM post_category pc 
