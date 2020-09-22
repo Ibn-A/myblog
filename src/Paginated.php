@@ -8,22 +8,20 @@ class Paginated {
 
     private $query;
     private $queryCount;
-    private $classMapping;
     private $pdo;
     private $perPage;
     private $count;
 
-    public function __construct(string $query, string $queryCount, string $classMapping, ?\PDO $pdo = null, $perPage = 12) {
+    public function __construct(string $query, string $queryCount, ?\PDO $pdo = null, $perPage = 12) {
 
         $this->query = $query;
         $this->queryCount = $queryCount;
-        $this->classMapping = $classMapping;
         $this->pdo = $pdo ?: Connection::getPDO();
         $this->perPage = $perPage;
-        $this->count = $count;
+     
     }
 
-    public function getItems(): array {
+    public function getItems(string $classMapping): array {
         $currentPage = $this->getCurrentPage();
         $pages = $this->getPages();
         if ($currentPage > $pages) {
@@ -32,7 +30,7 @@ class Paginated {
         //récupère les 12 dernières articles triés par date
         $offset = $this->perPage * ($currentPage - 1);
         $query = $this->pdo->query($this->query . " LIMIT {$this->perPage} OFFSET $offset ");
-        $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
+        $posts = $query->fetchAll(PDO::FETCH_CLASS, $classMapping);
         return $posts;
     }
     public function previousLink(string $link): ?string {

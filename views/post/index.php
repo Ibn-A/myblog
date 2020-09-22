@@ -10,10 +10,9 @@ $pdo = Connection::getPDO();
 
 $paginated = new Paginated(
     "SELECT * FROM post ORDER BY created_at DESC",
-    "SELECT COUNT(id_post) FROM post",
-    Post::class
+    "SELECT COUNT(id_post) FROM post"
 );
-$posts = $paginated->getItems();
+$posts = $paginated->getItems(Post::class);
 $link = $router->url('home');
 ?>
 <h1> Mon Blog</h1>

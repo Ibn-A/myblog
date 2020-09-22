@@ -33,16 +33,15 @@ $paginated = new Paginated(
     JOIN post_category pc ON pc.id_post = p.id_post
     WHERE pc.id_category = {$category->getID()}
     ORDER BY created_at DESC",
-    "SELECT COUNT(id_category) FROM post_category WHERE id_category = {$category->getID()} ",
-    Post::class
+    "SELECT COUNT(id_category) FROM post_category WHERE id_category = {$category->getID()} "
 );
 /** @var Posts[] */
-$posts = $paginated->getItems();
+$posts = $paginated->getItems(Post::class);
 $link = $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]);
 
 ?>
 
-<h1> <?=$title?></h1>
+<h1> <?= he($title) ?></h1>
 <div class="row">
     <?php foreach($posts as $post): ?>
     <div class="col-md-4">
