@@ -37,6 +37,20 @@ $paginated = new Paginated(
 );
 /** @var Posts[] */
 $posts = $paginated->getItems(Post::class);
+$postsByID = [];
+foreach($posts as $post) {
+    $postsByID[$post->getID()] = $post;
+}
+
+$categories = $pdo->query('SELECT c.*, pc.id_post 
+             FROM post_category pc 
+             JOIN category c ON c.id_category = pc.id_category 
+             WHERE pc.id_post IN(' . implode(',', array_keys($postsByID)) . ')'
+    )->fetchAll(PDO::FETCH_CLASS, Category::class);
+//On parcourt les catégories
+foreach($categories as $category) {
+    $postsByID[$category->getPostID()]->addCategory($category);
+}
 $link = $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]);
 
 ?>

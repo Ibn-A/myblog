@@ -36,7 +36,7 @@ class Post {
     /**
      * @return Category[]
      */
-    public function getCategories() {
+    public function getCategories(): array {
         return $this->categories;
     }
 
@@ -45,5 +45,9 @@ class Post {
             return null;
         }
         return nl2br(htmlentities(Text::excerpt($this->content, 60)));
+    }
+
+    public function addCategory(Category $category): void {
+        $this->categories[] = $category;
     }
 }

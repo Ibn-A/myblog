@@ -9,6 +9,8 @@ class Category {
 
     private $slug_category;
 
+    private $id_post;
+
 
     public function getID(): ?int {
         return $this->id_category;
@@ -20,5 +22,9 @@ class Category {
 
     public function getSlug(): ?string {
         return $this->slug_category;
+    }
+
+    public function getPostID(): ?int {
+        return $this->id_post;
     }
 }

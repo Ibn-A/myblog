@@ -37,9 +37,13 @@ $categories = $query->fetchAll();
  <div class="card-body">
     <h5 ><?= he($post->getTitle()) ?></h5>
     <p class="text-muted"><?= $post->getCreatedAt()->format('d F Y')?></p>
-    <?php foreach($categories as $category):
+    <?php foreach($categories as $k => $category):
+        if($k > 0) {
+            echo ', ';
+        }
+        $category_url = $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()]);
     ?>
-        <a href="<?= $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSlug()])?>"><?= $category->getName()?></a>
+        <a href="<?= $category_url?>"><?= $category->getName()?></a>
     <?php endforeach?>
     <p><?= $post->getContent() ?></p>
 
