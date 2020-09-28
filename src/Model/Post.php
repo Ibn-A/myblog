@@ -15,7 +15,7 @@ class Post {
 
     private $created_at;
 
-    private $categories;
+    private $categories = [];
 
     public function getID(): ?int {
         return $this->id_post;
@@ -33,6 +33,9 @@ class Post {
     public function getCreatedAt(): Datetime {
         return new DateTime($this->created_at);
     }
+    /**
+     * @return Category[]
+     */
     public function getCategories() {
         return $this->categories;
     }
