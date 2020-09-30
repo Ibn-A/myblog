@@ -1,36 +1,12 @@
 <?php 
-use App\Helpers\Text;
-use App\Model\Post;
-use App\Model\Category;
 use App\Connection;
-use App\URL;
-use App\Paginated;
+use App\Table\PostTable;
 
 $title = "Mon Blog"; 
 $pdo = Connection::getPDO();
 
-$paginated = new Paginated(
-    "SELECT * FROM post ORDER BY created_at DESC",
-    "SELECT COUNT(id_post) FROM post"
-);
-$posts = $paginated->getItems(Post::class);
-//recupérations des catégories des articles
-$postsByID = [];
-foreach($posts as $post) {
-    $postsByID[$post->getID()] = $post;
-}
-
-$categories = $pdo->query('SELECT c.*, pc.id_post 
-             FROM post_category pc 
-             JOIN category c ON c.id_category = pc.id_category 
-             WHERE pc.id_post IN(' . implode(',', array_keys($postsByID)) . ')'
-    )->fetchAll(PDO::FETCH_CLASS, Category::class);
-//On parcourt les catégories
-foreach($categories as $category) {
-    $postsByID[$category->getPostID()]->addCategory($category);
-}
-    // On trouve l'article $posts correspondant à la ligne
-        //On ajoute la catégorie à l'article
+$table = new PostTable($pdo);
+[$posts, $pagination]= $table->findPaginated();
 
 $link = $router->url('home');
 ?>
@@ -45,6 +21,6 @@ $link = $router->url('home');
 </div>
 
 <div class="d-flex justify-content-between my-4">
-        <?= $paginated->previousLink($link);?>
-        <?= $paginated->nextLink($link);?>
+        <?= $pagination->previousLink($link);?>
+        <?= $pagination->nextLink($link);?>
 </div>
