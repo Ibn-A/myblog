@@ -8,18 +8,9 @@ use \PDO;
 
 class PostTable extends Table {
 
-    public function find(int $id): Post {
-
-        $query = $this->pdo->prepare('SELECT * FROM post WHERE id_post = :id');
-        $query->execute(['id' => $id ]);
-        $query->setFetchMode(PDO::FETCH_CLASS, Post::class);
-        /** @var Category|false */
-        $result = $query->fetch();
-        if ($result === false) {
-            throw new NotFoundException('post', $id);
-        }
-        return $result;
-    }
+    protected $table = "post";
+    protected $class = Post::class;
+    protected $id = id_post;
 
     public function findPaginated() {
         // Recupère tous les articles paginées
