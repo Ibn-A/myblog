@@ -12,11 +12,11 @@ class CategoryTable extends Table {
         $query->execute(['id' => $id ]);
         $query->setFetchMode(PDO::FETCH_CLASS, Category::class);
         /** @var Category|false */
-        $category = $query->fetch();
-        if ($category === false) {
+        $result = $query->fetch();
+        if ($result === false) {
             throw new NotFoundException('category', $id);
         }
-        return $category;
+        return $result;
     }
 
     /**
