@@ -30,6 +30,12 @@ Class Router {
         $this->router->map('POST',$url, $view, $name);
         return $this;
     }
+    // methode permettant d'appeler les formulaire en GET ou en POST
+    public function match(string $url, string $view, ?string $name = null) : self{
+        
+        $this->router->map('POST|GET',$url, $view, $name);
+        return $this;
+    }
 
     public function url(string $name, array $params = []) {
         return $this->router->generate($name, $params);

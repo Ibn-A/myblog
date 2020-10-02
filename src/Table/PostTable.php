@@ -12,6 +12,14 @@ class PostTable extends Table {
     protected $class = Post::class;
     protected $id = id_post;
 
+    public function update(Post $post): void {
+        $query = $this->pdo->prepare("UPDATE {$this->table} SET title = :name WHERE id_post =:id");
+        $ok = $query->execute([
+            'id' => $post->getID(),
+            'name' => $post->getTitle()
+        ]);
+    }
+
     public function delete(int $id): void {
     $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id_post = :id");
     $ok = $query->execute([$id]);

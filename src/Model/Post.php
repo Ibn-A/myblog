@@ -23,12 +23,23 @@ class Post {
     public function getTitle(): ?string {
         return $this->title;
     }
+
+    public function setTitle(string $title): self {
+        $this->title = $title;
+        return $this;
+    }
+
     public function getSlug(): ?string {
         return $this->slug_post;
     }
 
     public function getContent(): ?string {
         return nl2br(htmlentities($this->content));
+    }
+
+    public function setContent(string $content):self {
+        $this->content = $content;
+        return $this;
     }
     public function getCreatedAt(): Datetime {
         return new DateTime($this->created_at);
