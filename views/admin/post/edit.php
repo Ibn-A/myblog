@@ -15,9 +15,9 @@ if (!empty($_POST)) {
 }
 ?>
 
-<?php if ($success = true):?>
+<?php if ($success):?>
     <div class="alert alert-success">
-        L'article a bien été modifié
+        L'article #<?=$post->getID()?> a bien été modifié.
     </div>
 <?php endif ?>
 
@@ -26,7 +26,7 @@ if (!empty($_POST)) {
 <form action="" method="POST">
     <div class="form-group">
         <label for="name" >Titre</label>
-        <input type="text" class="form-control" name="name" value="<?= he($post->getTitle())?>">
+        <input type="text" class="form-control" name="name" value="<?= he($post->getTitle())?>" required>
     </div>
     <button class="btn btn-primary">Modifier</button>
 </form>
