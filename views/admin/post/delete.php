@@ -1,7 +1,9 @@
 <?php 
 use App\Connection;
 use App\Table\PostTable;
+use App\Auth;
 
+Auth::check();
 
 $pdo = Connection::getPDO();
 $table = new PostTable($pdo);
