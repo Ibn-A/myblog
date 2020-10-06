@@ -3,6 +3,7 @@ use App\Connection;
 use App\Table\PostTable;
 use Valitron\Validator;
 use App\HTML\Form;
+use App\Validators\PostValidator;
 
 $pdo = Connection::getPDO();
 $postTable = new PostTable($pdo);
@@ -13,9 +14,8 @@ $errors = [];
 // conditions de validation du formulaire
 if (!empty($_POST)) {
     Validator::lang('fr');
-    $v = new Validator($_POST);
-    $v->rule('required', ['title','slug']);
-    $v->rule('lengthBetween', ['title','slug'], 10, 100);
+    //logique de la validation de données
+    $v = new PostValidator($_POST);
     $post
         ->setTitle($_POST['title'])
         ->setSlug($_POST['slug'])
