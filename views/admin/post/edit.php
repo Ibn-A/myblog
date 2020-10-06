@@ -2,6 +2,7 @@
 use App\Connection;
 use App\Table\PostTable;
 use Valitron\Validator;
+use App\HTML\Form;
 
 $pdo = Connection::getPDO();
 $postTable = new PostTable($pdo);
@@ -17,17 +18,17 @@ if (!empty($_POST)) {
         'title' => 'Titre',
         'content' => 'Contenu'
     ));
-    $v->rule('required', 'title');
-    $v->rule('lengthBetween', 'title', 10, 100);
+    $v->rule('required', ['title','slug']);
+    $v->rule('lengthBetween', ['title','slug'], 10, 100);
     $post->setTitle($_POST['title']);
     if ($v->validate()) {
         $postTable->update($post);
         $success = true;
     }else {
         $errors = $v->errors();  
-    }
-    
+    } 
 }
+$form =new Form($post, $errors);
 ?>
 
 <?php if ($success):?>
@@ -44,14 +45,9 @@ if (!empty($_POST)) {
 <h1> Editer l'article : <?= he($post->getTitle())?></h1>
 
 <form action="" method="POST">
-    <div class="form-group">
-        <label for="name" >Titre</label>
-        <input type="text" class="form-control <?= isset($errors['title']) ? 'is-invalid' : '' ?>" name="title" value="<?= he($post->getTitle())?>">
-        <?php if (isset($errors['title'])):?>
-        <div class="invalid-feedback">
-            <?= implode('<br>', $errors['title'])?>
-        </div>
-        <?php endif ?>
-    </div>
+    <?= $form->input('title','Titre'); ?>
+    <?= $form->input('slug', 'URL');?>
+    <?= $form->textarea('content', 'Contenu'); ?>
+    <?= $form->input('created_at', 'Date de publication'); ?>
     <button class="btn btn-primary">Modifier</button>
 </form>
