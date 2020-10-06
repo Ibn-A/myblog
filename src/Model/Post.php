@@ -33,6 +33,11 @@ class Post {
         return $this->slug_post;
     }
 
+    public function setSlug(string $slug): self {
+        $this->slug_post = $slug;
+        return $this;
+    }
+
     public function getContent(): ?string {
         return nl2br(htmlentities($this->content));
     }
@@ -41,8 +46,14 @@ class Post {
         $this->content = $content;
         return $this;
     }
+
     public function getCreatedAt(): Datetime {
         return new DateTime($this->created_at);
+    }
+
+    public function setCreatedAt(string $date): self {
+        $this->created_at = $date;
+        return $this;
     }
     /**
      * @return Category[]

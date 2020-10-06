@@ -14,13 +14,14 @@ $errors = [];
 if (!empty($_POST)) {
     Validator::lang('fr');
     $v = new Validator($_POST);
-    $v->labels(array(
-        'title' => 'Titre',
-        'content' => 'Contenu'
-    ));
     $v->rule('required', ['title','slug']);
     $v->rule('lengthBetween', ['title','slug'], 10, 100);
-    $post->setTitle($_POST['title']);
+    $post
+        ->setTitle($_POST['title'])
+        ->setSlug($_POST['slug'])
+        ->setContent($_POST['content'])
+        ->setCreatedAt($_POST['created_at']);
+        
     if ($v->validate()) {
         $postTable->update($post);
         $success = true;

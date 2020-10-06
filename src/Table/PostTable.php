@@ -13,10 +13,13 @@ class PostTable extends Table {
     protected $id = id_post;
 
     public function update(Post $post): void {
-        $query = $this->pdo->prepare("UPDATE {$this->table} SET title = :name WHERE id_post =:id");
+        $query = $this->pdo->prepare("UPDATE {$this->table} SET title = :title, slug_post = :slug, content = :content, created_at = :created WHERE id_post =:id");
         $ok = $query->execute([
             'id' => $post->getID(),
-            'name' => $post->getTitle()
+            'title' => $post->getTitle(),
+            'slug' => $post->getSlug(),
+            'content' => $post->getContent(),
+            'created' => $post->getCreatedAt()->format('Y-m-d H:i:s')
         ]);
     }
 
