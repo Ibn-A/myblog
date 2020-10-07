@@ -13,6 +13,7 @@ class PostValidator {
         $v = new Validator($data);
         $v->rule('required', ['title','slug']);
         $v->rule('lengthBetween', ['title','slug'], 3, 100);
+        $v->rule('slug', 'slug');
         $this->validator = $v;
     }
 
