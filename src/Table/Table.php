@@ -31,4 +31,23 @@ abstract class Table {
         }
         return $result;
     }
+
+    /**
+     * Vérifie si une valeur existe dans une table en bdd
+     * @param string $field Champ à rechercher
+     * @param string $value Valeur associée au Champs
+     */
+    public function exists(string $field, $value, ?int $except = null): bool {
+        $sql = "SELECT COUNT(id_post) FROM {$this->table} WHERE $field = ?";
+        $params = [$value];
+        if($except !== null) {
+            $sql .= " AND id_post != ?";
+            $params[] = $except;
+        }
+        $query = $this->pdo->prepare($sql);
+        $query->execute($params);
+        $result = (int)$query->fetch(PDO::FETCH_NUM[0]) > 0;
+        return $result;
+        
+    }
 }

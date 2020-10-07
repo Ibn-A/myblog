@@ -15,7 +15,7 @@ $errors = [];
 if (!empty($_POST)) {
     Validator::lang('fr');
     //logique de la validation de données
-    $v = new PostValidator($_POST);
+    $v = new PostValidator($_POST, $postTable, $post->getID());
     $post
         ->setTitle($_POST['title'])
         ->setSlug($_POST['slug'])
