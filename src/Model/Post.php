@@ -20,6 +20,13 @@ class Post {
     public function getID(): ?int {
         return $this->id_post;
     }
+
+    public function setID(int $id):self {
+        $this->id_post = $id;
+        return $this;
+
+    }
+
     public function getTitle(): ?string {
         return $this->title;
     }
