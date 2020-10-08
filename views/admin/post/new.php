@@ -7,7 +7,6 @@ use App\Validators\PostValidator;
 use App\ObjectHelper;
 use App\model\Post;
 
-$success = false;
 
 $errors = [];
 $post = new Post();
@@ -33,11 +32,6 @@ $form = new Form($post, $errors);
 
 ?>
 
-<?php if ($success):?>
-    <div class="alert alert-success">
-        L'article a bien été enregistré.
-    </div>
-<?php endif ?>
 <?php if (!empty($errors)):?>
     <div class="alert alert-danger">
         L'article n'a pas pu être enregistré, merci de corriger vos erreurs.

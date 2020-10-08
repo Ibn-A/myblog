@@ -34,6 +34,12 @@ $form = new Form($post, $errors);
         L'article #<?=$post->getID()?> a bien été modifié.
     </div>
 <?php endif ?>
+<?php if (isset($_GET['created'])):?>
+    <div class="alert alert-success">
+        L'article a bien été crée.
+    </div>
+<?php endif ?>
+
 <?php if (!empty($errors)):?>
     <div class="alert alert-danger">
         L'article n'a pu être modifié, merci de corriger vos erreurs.
