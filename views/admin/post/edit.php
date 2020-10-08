@@ -26,7 +26,7 @@ if (!empty($_POST)) {
         $errors = $v->errors();  
     } 
 }
-$form =new Form($post, $errors);
+$form = new Form($post, $errors);
 ?>
 
 <?php if ($success):?>
@@ -42,10 +42,4 @@ $form =new Form($post, $errors);
 
 <h1> Editer l'article : <?= he($post->getTitle())?></h1>
 
-<form action="" method="POST">
-    <?= $form->input('title','Titre'); ?>
-    <?= $form->input('slug', 'URL');?>
-    <?= $form->textarea('content', 'Contenu'); ?>
-    <?= $form->input('created_at', 'Date de publication'); ?>
-    <button class="btn btn-primary">Modifier</button>
-</form>
+<?php require('_form.php') ?>
