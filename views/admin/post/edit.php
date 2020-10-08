@@ -4,6 +4,7 @@ use App\Table\PostTable;
 use Valitron\Validator;
 use App\HTML\Form;
 use App\Validators\PostValidator;
+use App\ObjectHelper;
 
 $pdo = Connection::getPDO();
 $postTable = new PostTable($pdo);
@@ -16,12 +17,8 @@ if (!empty($_POST)) {
     Validator::lang('fr');
     //logique de la validation de données
     $v = new PostValidator($_POST, $postTable, $post->getID());
-    $post
-        ->setTitle($_POST['title'])
-        ->setSlug($_POST['slug'])
-        ->setContent($_POST['content'])
-        ->setCreatedAt($_POST['created_at']);
-        
+    ObjectHelper::hydrate($post, $_POST, ['title','content', 'slug', 'created_at']);
+  
     if ($v->validate()) {
         $postTable->update($post);
         $success = true;
