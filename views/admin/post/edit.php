@@ -5,6 +5,9 @@ use Valitron\Validator;
 use App\HTML\Form;
 use App\Validators\PostValidator;
 use App\ObjectHelper;
+use App\Auth;
+
+Auth::check();
 
 $pdo = Connection::getPDO();
 $postTable = new PostTable($pdo);

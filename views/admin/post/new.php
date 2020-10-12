@@ -6,7 +6,9 @@ use App\HTML\Form;
 use App\Validators\PostValidator;
 use App\ObjectHelper;
 use App\model\Post;
+use App\Auth;
 
+Auth::check();
 
 $errors = [];
 $post = new Post();
