@@ -8,12 +8,17 @@
     </head>
     <body class="d-flex flex-column h-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a href="#" class="navbar-brand"> Mon site</a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="<?= $router->url('admin_posts')?>" class="nav-link"  style="color:white"> Articles</a>    
-                </li>
-            </ul>
+            <a href="<?= $router->url('home')?>" class="navbar-brand"> Mon site</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="<?= $router->url('admin_posts')?>" class="nav-link"  style="color:white"> Articles</a>    
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= $router->url('admin_categories')?>" class="nav-link"  style="color:white"> Categories</a> 
+                    </li>
+                </ul>
+            </div>
         </nav> 
 
         <div class="container mt-4">
