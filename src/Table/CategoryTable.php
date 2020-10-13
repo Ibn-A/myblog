@@ -29,4 +29,36 @@ class CategoryTable extends Table {
         }
     }
 
+    public function delete(int $id) {
+        $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id_category = ?");
+        $ok = $query->execute([$id]);
+        if ($ok === false) {
+            throw new \Exception("Impossible de supprimer l'enregistrement $id dans la table {$this->table}");
+        }
+    }
+
+    public function create(Category $category) {
+        $query = $this->pdo->prepare("INSERT INTO {$this->table} SET name_category = :name, slug_category = :slug ");
+        $ok = $query->execute([
+            'name' => $category->getName(),
+            'slug' => $category->getSlug()
+        ]);
+        if ($ok === false) {
+            throw new \Exception("Impossible de créer l'enregistrement dans la table {$this->table}");
+        }
+        $category->setID($this->pdo->lastInsertId());
+    }
+
+    public function update(Category $category) {
+        $query = $this->pdo->prepare("UPDATE {$this->table} SET name_category = :name, slug_category = :slug WHERE id_category =:id");
+        $ok = $query->execute([
+            'id' => $category->getID(),
+            'name' => $category->getName(),
+            'slug' => $category->getSlug()
+        ]);
+        if ($ok === false) {
+            throw new \Exception("Impossible de modifier l'enregistrement $id dans la table {$this->table}");
+        }
+    }
+
 }

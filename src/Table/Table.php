@@ -50,4 +50,11 @@ abstract class Table {
         return $result;
         
     }
+
+    public function findAll(): array {
+        $sql = "SELECT * FROM {$this->table}";
+        $result = $this->pdo->query($sql, PDO::FETCH_CLASS,$this->class)->fetchAll();
+        return $result;
+    }
+   
 }
