@@ -1,37 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr" class="h-100">
     <head>
+        <title><?= isset($title) ? he($title) : "Mon Blog sur le développement web" ?></title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?= isset($title) ? he($title) : "Mon Site" ?></title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        
+        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="fonts/icomoon/style.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="css/aos.css">
+
+        <link rel="stylesheet" href="css/style.css">
+        
     </head>
-    <body class="d-flex flex-column h-100">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a href="<?= $router->url('home')?>" class="navbar-brand"> Mon site</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="<?= $router->url('admin_posts')?>" class="nav-link"  style="color:white"> Articles</a>    
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?= $router->url('admin_categories')?>" class="nav-link"  style="color:white"> Categories</a> 
-                    </li>
-                </ul>
+    <body>
+    <div class="site-wrap">
+
+        <?php include("header.php");?>
+
+
+        <div class="site-section bg-light">
+            <div class="container">
+                <?= $content ?>
             </div>
-        </nav> 
-
-        <div class="container mt-4">
-            <?= $content ?>
-
         </div>
 
-        <footer class="bg-light py-4 footer mt-auto">
-            <container class="container">
-                <?php if (defined('DEBUG_TIME')):?>
-                Page généré en <?=  (microtime(true) - DEBUG_TIME) ?> ms.
-                <?php endif ?>
-            </container>
-        </footer>   
+
+        <?php include("footer.php");?>   
+
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/aos.js"></script>
+
+    <script src="js/main.js"></script>
+        
     </body>
 </html>
