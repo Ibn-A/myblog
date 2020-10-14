@@ -6,14 +6,14 @@ use App\Auth;
 Auth::check();
 
 $router->layout = "admin/layouts/defaults";
-$title = "Administration";
+$title = "Gestion des articles";
 $pdo = Connection::getPDO();
 [$posts, $pagination] = (new PostTable($pdo))->findPaginated();
 
 $link = $router->url('admin_posts');
 ?>
 
-<h1> Administration du Blog</h1>
+<h1> Gestion des articles</h1>
 
 <?php if (isset($_GET['delete'])): ?>
 <div class="alert alert-success">

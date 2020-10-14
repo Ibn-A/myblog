@@ -14,7 +14,7 @@ $items = (new CategoryTable($pdo))->findAll();
 
 ?>
 
-<h1> Administration du Blog</h1>
+<h1> Gestion des catégories</h1>
 
 <?php if (isset($_GET['delete'])): ?>
 <div class="alert alert-success">
