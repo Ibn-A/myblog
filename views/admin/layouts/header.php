@@ -17,10 +17,10 @@
 
             <div class="col-8 text-right">
                 <nav class="site-navigation" role="navigation">
-                <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
-                    <li><a href="<?= $router->url('admin_posts')?>">Articles</a></li>
-                    <li><a href="<?= $router->url('admin_categories')?>">Catégories</a></li>
-                </ul>
+                    <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
+                        <li><a href="<?= $router->url('admin_posts')?>">Articles</a></li>
+                        <li><a href="<?= $router->url('admin_categories')?>">Catégories</a></li>
+                    </ul>
                 </nav>
                 <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none"><span class="icon-menu h3"></span></a>
             </div>
