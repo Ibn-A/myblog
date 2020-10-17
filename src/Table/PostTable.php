@@ -13,7 +13,7 @@ class PostTable extends Table {
     protected $id = id_post;
 
 
-    public function create(Post $post): void {
+    public function createPost(Post $post): void {
         $query = $this->pdo->prepare("INSERT INTO {$this->table} SET title = :title, slug_post = :slug, content = :content, created_at = :created, id_user = 1");
         $ok = $query->execute([
             'title' => $post->getTitle(),
@@ -27,7 +27,7 @@ class PostTable extends Table {
         $post->setID($this->pdo->lastInsertId());
     }
 
-    public function update(Post $post): void {
+    public function updatePost(Post $post): void {
         $query = $this->pdo->prepare("UPDATE {$this->table} SET title = :title, slug_post = :slug, content = :content, created_at = :created WHERE id_post =:id");
         $ok = $query->execute([
             'id' => $post->getID(),
@@ -41,7 +41,7 @@ class PostTable extends Table {
         }
     }
 
-    public function delete(int $id): void {
+    public function deletePost(int $id): void {
     $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id_post = ?");
     $ok = $query->execute([$id]);
     if ($ok === false) {
