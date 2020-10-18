@@ -7,7 +7,7 @@ Auth::check();
 
 $pdo = Connection::getPDO();
 $table = new PostTable($pdo);
-$table->delete($params['id']);
+$table->deletePost($params['id']);
 header('Location: ' . $router->url('admin_posts'). '?delete=1');
 
 ?>
