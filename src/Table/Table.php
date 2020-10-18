@@ -1,5 +1,6 @@
 <?php
 namespace App\Table;
+use App\Table\Exception\NotFoundException;
 use \PDO;
 
 abstract class Table {
