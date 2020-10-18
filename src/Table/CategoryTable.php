@@ -16,6 +16,7 @@ class CategoryTable extends Table {
 
         $postsByID = [];
         foreach($posts as $post) {
+            $post->setCategories([]);
             $postsByID[$post->getID()] = $post;
         }
         $categories = $this->pdo->query('SELECT c.*, pc.id_post 
@@ -59,6 +60,23 @@ class CategoryTable extends Table {
         if ($ok === false) {
             throw new \Exception("Impossible de modifier l'enregistrement $id dans la table {$this->table}");
         }
+    }
+/**
+ * Récupere toutes les catégories en les listant par nom et dans un ordre croissant.
+ */
+    public function allByName(): array {
+        $sql = "SELECT * FROM {$this->table} ORDER BY name_category ASC";
+        $result = $this->pdo->query($sql, PDO::FETCH_CLASS,$this->class)->fetchAll();
+        return $result;
+    }
+
+    public function list(): array {
+        $categories = $this->allByName();
+        $results = [];
+        foreach($categories as $category) {
+            $results[$category->getID()] = $category->getName();
+        }
+        return $results;
     }
 
 }

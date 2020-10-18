@@ -1,6 +1,7 @@
 <?php
 use App\Connection;
 use App\Table\PostTable;
+use App\Table\CategoryTable;
 use Valitron\Validator;
 use App\HTML\Form;
 use App\Validators\PostValidator;
@@ -11,19 +12,25 @@ Auth::check();
 
 $pdo = Connection::getPDO();
 $postTable = new PostTable($pdo);
+$categoryTable = new CategoryTable($pdo);
+$categories = $categoryTable->list();//récupére les catégorie sous forme de liste
 $post = $postTable->find($params['id']);
+$categoryTable->hydratePosts([$post]);
 $success = false;
-
 $errors = [];
 // conditions de validation du formulaire
 if (!empty($_POST)) {
     Validator::lang('fr');
     //logique de la validation de données
-    $v = new PostValidator($_POST, $postTable, $post->getID());
+    $v = new PostValidator($_POST, $postTable, $post->getID(), $categories);
     ObjectHelper::hydrate($post, $_POST, ['title','content', 'slug', 'created_at']);
   
     if ($v->validate()) {
-        $postTable->update($post);
+        $pdo->beginTransaction();
+        $postTable->updatePost($post);
+        $postTable->attachCategories($post->getID(), $_POST['categories_ids']);
+        $pdo->commit();
+        $categoryTable->hydratePosts([$post]);
         $success = true;
     }else {
         $errors = $v->errors();  

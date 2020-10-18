@@ -69,6 +69,11 @@ class Post {
         return $this->categories;
     }
 
+    public function setCategories(array $categories): self {
+        $this->categories = $categories;
+        return $this;
+    }
+
     public function getExcerpt() {
         if ($this->content === null) {
             return null;
@@ -76,6 +81,13 @@ class Post {
         return nl2br(htmlentities(Text::excerpt($this->content, 60)));
     }
 
+    public function getCategoriesIds() {
+        $ids = [];
+        Foreach($this->categories as $category) {
+            $ids[] = $category->getID();
+        }
+        return $ids;
+    }
     public function addCategory(Category $category): void {
         $this->categories[] = $category;
     }

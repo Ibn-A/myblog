@@ -21,10 +21,19 @@ class PostTable extends Table {
             'content' => $post->getContent(),
             'created' => $post->getCreatedAt()->format('Y-m-d H:i:s')
         ]);
+        $post->setID($this->pdo->lastInsertId());
         if ($ok === false) {
             throw new \Exception("Impossible de créer l'enregistrement dans la table {$this->table}");
         }
-        $post->setID($this->pdo->lastInsertId());
+        
+    }
+
+    public function attachCategories(int $id, array $categories) {
+        $this->pdo->exec("DELETE FROM post_category WHERE id_post = ". $id);
+        $query = $this->pdo->prepare("INSERT INTO post_category SET id_post = ?, id_category = ?");
+        foreach($categories as $category) {
+            $query->execute([$id, $category]);
+        }
     }
 
     public function updatePost(Post $post): void {
@@ -36,6 +45,7 @@ class PostTable extends Table {
             'content' => $post->getContent(),
             'created' => $post->getCreatedAt()->format('Y-m-d H:i:s')
         ]);
+
         if ($ok === false) {
             throw new \Exception("Impossible de modifier l'enregistrement $id dans la table {$this->table}");
         }

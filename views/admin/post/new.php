@@ -1,6 +1,7 @@
 <?php
 use App\Connection;
 use App\Table\PostTable;
+use App\Table\CategoryTable;
 use Valitron\Validator;
 use App\HTML\Form;
 use App\Validators\PostValidator;
@@ -10,20 +11,28 @@ use App\Auth;
 
 Auth::check();
 
+$router->layout = "admin/layouts/defaults";
+$title = "Ajout d'un article";
+
 $errors = [];
 $post = new Post();
+$pdo = Connection::getPDO();
+$categoryTable = new CategoryTable($pdo);
+$categories = $categoryTable->list();
 $post->setCreatedAt(date('Y-m-d H:i:s'));
 
 if (!empty($_POST)) {
-    $pdo = Connection::getPDO();
     $postTable = new PostTable($pdo);
     Validator::lang('fr');
     //logique de la validation de données
-    $v = new PostValidator($_POST, $postTable, $post->getID());
+    $v = new PostValidator($_POST, $postTable, $post->getID(), $categories);
     ObjectHelper::hydrate($post, $_POST, ['title','content', 'slug', 'created_at']);
   
     if ($v->validate()) {
-        $postTable->create($post);
+        $pdo->beginTransaction();
+        $postTable->createPost($post);
+        $postTable->attachCategories($post->getID(), $_POST['categories_ids']);
+        $pdo->commit();
         header('Location: '. $router->url('admin_post', ['id'=> $post->getID()]) . '?created=1');
         exit();
     }else {
