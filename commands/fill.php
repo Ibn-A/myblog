@@ -15,8 +15,8 @@ $pdo->exec('TRUNCATE TABLE user');
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 1');
 
 // creation du user
-$password = password_hash('Ibn', PASSWORD_BCRYPT);
-$pdo->exec("INSERT INTO user SET username='Ibn',password='$password'");
+$password = password_hash('admin', PASSWORD_BCRYPT);
+$pdo->exec("INSERT INTO user SET username='admin',password='$password'");
 
 for ($i=1;$i < 51; $i++){
     $pdo->exec("INSERT INTO post SET title='{$faker->sentence()}', slug_post='{$faker->slug}', content='{$faker->paragraph(rand(3,15), true)}', created_at='{$faker->date} {$faker->time}', id_user = 1 ");
