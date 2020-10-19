@@ -47,7 +47,7 @@ Class Router {
 
     public function run() : self{
         $match = $this->router->match();
-        $view = $match['target'];
+        $view = $match['target'] ?: 'e404';
         //recuperer les infos concernant la page afficher : slug et id
         $params = $match['params'];
         $router = $this;

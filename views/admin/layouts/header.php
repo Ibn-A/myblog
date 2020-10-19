@@ -20,6 +20,11 @@
                     <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
                         <li><a href="<?= $router->url('admin_posts')?>">Articles</a></li>
                         <li><a href="<?= $router->url('admin_categories')?>">Catégories</a></li>
+                        <li>
+                            <form action="<?= $router->url('logout') ?>" method="post">
+                                <button type="submit" class="nav-link">Se déconnecter</button>
+                            </form>
+                        </li>
                     </ul>
                 </nav>
                 <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none"><span class="icon-menu h3"></span></a>

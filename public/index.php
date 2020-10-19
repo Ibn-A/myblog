@@ -32,7 +32,8 @@ $router->get('/', 'post/index', 'home');
 $router->get('/blog/category/[*:slug]-[i:id]', 'category/show','category');
 $router->get('/blog/[*:slug]-[i:id]', 'post/show', 'post');
 
-$router->match('/login','auth/login', 'login');
+$router->match('/login', 'auth/login', 'login');
+$router->post('/logout', 'auth/logout', 'logout');
 
 //PARTIE ADMINISTRATION
 //Gestion des articles
