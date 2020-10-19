@@ -36,9 +36,11 @@ $form = new Form($user, $errors);
     Vous ne pouvez pas accéder a cette page.
 </div>
 <?php endif ?>
-<form action="<?= $router->url('login')?>" method="POST">
+<div class="container">
+<form action="<?= $router->url('login')?>" method="POST" class="mb-4">
     <?= $form->input('username', 'Nom d\'utilisateur');?>
     <?= $form->input('password', 'Mot de passe');?>
     <button type="submit" class="btn btn-primary"> Se connecter</button>
 
 </form>
+</div>
