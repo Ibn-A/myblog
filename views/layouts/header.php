@@ -24,6 +24,11 @@
                     <li><a href="#">Laravel</a></li>
                     <li><a href="#">SEO</a></li>
                     <li><a href="#">Web</a></li>
+                    <li>
+                            <form action="<?= $router->url('login') ?>" method="post">
+                                <button type="submit" class="btn btn-outline-primary">Se connecter</button>
+                            </form>
+                        </li>
                 </ul>
                 </nav>
                 <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none"><span class="icon-menu h3"></span></a>
