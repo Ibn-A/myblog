@@ -10,17 +10,25 @@ $table = new PostTable($pdo);
 
 $link = $router->url('home');
 ?>
-<h1> Mon Blog</h1>
 
-<div class="row">
-    <?php foreach($posts as $post): ?>
-    <div class="col-md-4">
-        <?php require 'card.php' ?>
+    <div class="site-section">
+        <div class="container">
+            <div class="row mb-5">
+            <div class="col-12">
+                <h2>Recent Posts</h2>
+            </div>
+            </div>
+            <div class="row">
+                <?php foreach($posts as $post): ?>
+                <div class="col-lg-4 mb-4">
+                    <?php require 'card.php' ?>
+                </div>
+                <?php endforeach ?>
+            </div>
+        </div>
     </div>
-    <?php endforeach ?>
-</div>
 
-<div class="d-flex justify-content-between my-4">
-        <?= $pagination->previousLink($link);?>
-        <?= $pagination->nextLink($link);?>
-</div>
+    <div class="d-flex justify-content-between my-4">
+            <?= $pagination->previousLink($link);?>
+            <?= $pagination->nextLink($link);?>
+    </div>

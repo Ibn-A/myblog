@@ -27,11 +27,11 @@
         <?php include("header.php");?>
 
 
-        <div class="site-section bg-light">
+        
             <div class="container">
                 <?= $content ?>
             </div>
-        </div>
+        
 
 
         <?php include("footer.php");?>   
