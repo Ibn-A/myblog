@@ -22,7 +22,7 @@
                         <li><a href="<?= $router->url('admin_categories')?>">Catégories</a></li>
                         <li>
                             <form action="<?= $router->url('logout') ?>" method="post">
-                                <button type="submit" class="nav-link">Se déconnecter</button>
+                                <button type="submit" class="btn btn-outline-primary">Se déconnecter</button>
                             </form>
                         </li>
                     </ul>
