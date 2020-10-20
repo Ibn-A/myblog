@@ -20,9 +20,9 @@ $link = $router->url('home');
             </div>
             <div class="row">
                 <?php foreach($posts as $post): ?>
-                <div class="col-lg-4 mb-4">
+
                     <?php require 'card.php' ?>
-                </div>
+            
                 <?php endforeach ?>
             </div>
         </div>
