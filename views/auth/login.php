@@ -29,7 +29,6 @@ if (!empty($_POST)) {
 $form = new Form($user, $errors);
 
 ?>
-<h1> Se connecter </h1>
 
 <?php if(isset($_GET['forbidden'])) : ?>
 <div class="alert alert-danger">
@@ -37,10 +36,19 @@ $form = new Form($user, $errors);
 </div>
 <?php endif ?>
 <div class="container">
-<form action="<?= $router->url('login')?>" method="POST" class="mb-4">
-    <?= $form->input('username', 'Nom d\'utilisateur');?>
-    <?= $form->input('password', 'Mot de passe');?>
-    <button type="submit" class="btn btn-primary"> Se connecter</button>
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center"> Se Connecter </h2>
+                    <form action="<?= $router->url('login')?>" method="POST" class="form-signin">
+                        <?= $form->input('username', 'Nom d\'utilisateur');?>
+                        <?= $form->input('password', 'Mot de passe');?>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block text-uppercase"> Se connecter</button>
 
-</form>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
