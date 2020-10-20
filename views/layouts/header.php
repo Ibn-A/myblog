@@ -18,12 +18,11 @@
             <div class="col-8 text-right">
                 <nav class="site-navigation" role="navigation">
                 <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
-                    <li><a href="<?= $router->url('home')?>">Home</a></li>
-                    <li><a href="#">Php</a></li>
+                    <li><a href="#">PHP</a></li>
                     <li><a href="#">Symfony</a></li>
                     <li><a href="#">Laravel</a></li>
                     <li><a href="#">SEO</a></li>
-                    <li><a href="#">Web</a></li>
+                    <li><a href="#">SMO</a></li>
                     <li>
                             <form action="<?= $router->url('login') ?>" method="post">
                                 <button type="submit" class="btn btn-outline-primary">Se connecter</button>

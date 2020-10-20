@@ -12,7 +12,7 @@
         <div class="row align-items-center">
 
             <div class="col-4 site-logo">
-                <a href="<?= $router->url('home')?>" class="text-black h2 mb-0 navbar-brand">Mon site</a>
+                <a href="<?= $router->url('home')?>" class="text-black h2 mb-0 navbar-brand">Mon Blog - Administration</a>
             </div>
 
             <div class="col-8 text-right">
