@@ -19,7 +19,7 @@ if ($category->getSlug() !== $slug) {
     http_response_code(301);
     header('Location:' . $url);
 }
-$title = "Catégorie {$category->getName()}";
+$title = "Catégorie : {$category->getName()}";
 
 [$posts, $paginated] = (new PostTable($pdo))->findPaginatedForCategory($category->getID());
 
@@ -27,15 +27,27 @@ $link = $router->url('category', ['id' => $category->getID(), 'slug' => $categor
 
 ?>
 
+
+
+<div class="site-section">
 <h1> <?= he($title) ?></h1>
-<div class="row">
-    <?php foreach($posts as $post): ?>
-    <div class="col-md-4">
-        <?php require dirname(__DIR__) . '/post/card.php' ?>
+        <div class="container">
+            <div class="row mb-5">
+            <div class="col-12">
+                <h2>Les Articles</h2>
+            </div>
+            </div>
+            <div class="row">
+                <?php foreach($posts as $post): ?>
+
+                    <?php require dirname(__DIR__) . '/post/card.php' ?> 
+            
+                <?php endforeach ?>
+            </div>
+        </div>
     </div>
-    <?php endforeach ?>
-</div>
-<div class="d-flex justify-content-between my-4">
+
+<div class="container d-flex justify-content-between my-4">
     <?=$paginated->previousLink($link) ?>
     <?=$paginated->nextLink($link) ?>
         
