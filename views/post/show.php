@@ -20,7 +20,7 @@ if ($post->getSlug() !== $slug) {
 
 ?>
  <div class="card-body">
-    <h5 ><?= he($post->getTitle()) ?></h5>
+    <h1 ><?= he($post->getTitle()) ?></h1>
     <p class="text-muted"><?= $post->getCreatedAt()->format('d F Y')?></p>
     <?php foreach($post->getCategories() as $k => $category):
         if($k > 0) {
