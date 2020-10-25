@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5,
     visibility: visible; }
 
 .btn {
-  border-radius: 0; }
+  border-radius: 10% 30% 50% 70%; }
   .btn:hover, .btn:active, .btn:focus {
     outline: none;
     -webkit-box-shadow: none !important;
@@ -1236,3 +1236,29 @@ h1, h2, h3, h4, h5,
       outline: none; }
   .search-form-wrap form .form-control {
     border: none; }
+
+/* Log In */
+.card-signin {
+  border: 3;
+  border-radius: 10% 60% 30% 30%;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+

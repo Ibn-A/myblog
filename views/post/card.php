@@ -21,7 +21,7 @@ HTML;
                 </p>
                 <p><?= $post->getExcerpt() ?></p>
                 <p>
-                    <a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()])?>" class="btn btn-primary">voir plus</a>
+                    <a href="<?= $router->url('post', ['id' => $post->getID(), 'slug' => $post->getSlug()])?>" class="btn btn-primary">Lire plus</a>
                 </p>
 
             </div>
